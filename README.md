@@ -1,5 +1,7 @@
 # Die Westfront. 1914 bis 1918
 
+Webseite zum Ausprobieren: https://madpixelpirate.github.io/1wk-Stellungskrieg-d-f/
+
 Eine deutschsprachige, dokumentarische Browser-Ausstellung zum Stellungskrieg
 zwischen Deutschland und Frankreich. Sieben Kapitel verbinden eine belegte
 Geschichte mit einer Three.js-Karte und einem raeumlichen Modell eines
