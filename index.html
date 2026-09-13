@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="de" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Die Westfront 1914 bis 1918: eine quellenbasierte Geschichte des Stellungskriegs zwischen Deutschland und Frankreich mit interaktiven 3D-Modellen." />
+    <link rel="icon" href="data:," />
+    <title>Die Westfront. 1914 bis 1918 | Zeitspuren</title>
+    <script>
+      (() => {
+        const param = new URLSearchParams(window.location.search).get("scoutTheme");
+        const theme = param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#chapter-heading">Zur Geschichte</a>
+    <div class="app-shell">
+      <header class="site-header">
+        <a class="wordmark" href="#marne" aria-label="Zeitspuren, erstes Kapitel">
+          <span class="brand-icon"><i data-lucide="landmark"></i></span>
+          <span>ZEITSPUREN<span class="wordmark-divider">/</span><span class="wordmark-sub">Geschichte im Raum</span></span>
+        </a>
+        <div class="header-actions">
+          <button class="text-button" id="all-sources"><i data-lucide="book-open"></i><span>Quellen</span></button>
+          <button class="icon-button" id="print-story" aria-label="Geschichte drucken" data-tooltip="Lesefassung drucken"><i data-lucide="printer"></i></button>
+          <button class="icon-button" id="theme-toggle" aria-label="Darstellung wechseln" data-tooltip="Darstellung wechseln"><i data-lucide="sun-moon"></i></button>
+        </div>
+      </header>
+
+      <main>
+        <section class="masthead" aria-labelledby="exhibition-title">
+          <div>
+            <p class="eyebrow">ERSTER WELTKRIEG <span class="small-rule"></span> DEUTSCHLAND &amp; FRANKREICH</p>
+            <h1 id="exhibition-title">Die Westfront<span class="accent-period">.</span></h1>
+            <p class="exhibition-subtitle">Wie aus einem Vormarsch ein Stellungskrieg wurde.</p>
+          </div>
+          <div class="masthead-meta">
+            <div class="exhibition-years">1914<span> / </span>1918</div>
+            <div class="edition-line"><span>7 KAPITEL</span><span class="small-rule"></span><span>Eine dokumentarische Geschichte</span></div>
+          </div>
+        </section>
+
+        <div class="exhibit">
+          <article class="story-panel" id="story-panel" role="tabpanel" aria-labelledby="chapter-heading">
+            <div class="chapter-kicker"><span id="chapter-number">01</span><span class="small-rule"></span><span id="chapter-date"></span></div>
+            <h2 id="chapter-heading" tabindex="-1"></h2>
+            <p class="story-lead" id="chapter-lead"></p>
+            <div class="story-copy" id="chapter-copy"></div>
+            <p class="takeaway" id="chapter-takeaway"></p>
+            <div class="citation-row"><span>Belege</span><div id="chapter-citations"></div><button class="inline-button" id="chapter-sources">Einordnen <i data-lucide="arrow-up-right"></i></button></div>
+            <div class="story-navigation">
+              <button class="icon-button previous-button" id="previous-chapter" aria-label="Vorheriges Kapitel" data-tooltip="Vorheriges Kapitel"><i data-lucide="arrow-left"></i></button>
+              <span class="page-count"><span id="current-page">01</span><span> / 07</span></span>
+              <button class="next-button" id="next-chapter"><span id="next-label">Die Gr&auml;ben</span><i data-lucide="arrow-right"></i></button>
+            </div>
+          </article>
+
+          <section class="scene-stage" aria-label="R&auml;umliche Darstellung">
+            <div id="scene"></div>
+            <div id="scene-labels"></div>
+            <div class="scene-toolbar">
+              <div class="segmented-control" data-scene-obstacle aria-label="Modellansicht">
+                <button id="map-mode" aria-pressed="true"><i data-lucide="map"></i>Karte</button>
+                <button id="trench-mode" aria-pressed="false"><i data-lucide="layers-3"></i>Gr&auml;ben</button>
+              </div>
+              <div class="view-controls" data-scene-obstacle>
+                <button class="icon-button" id="open-glossary" aria-label="Grabenbegriffe" data-tooltip="Grabenbegriffe" hidden><i data-lucide="book-open"></i></button>
+                <button class="icon-button" id="top-view" aria-label="Draufsicht" aria-pressed="false" data-tooltip="Draufsicht"><i data-lucide="scan"></i></button>
+                <button class="icon-button" id="reset-view" aria-label="Ansicht zur&uuml;cksetzen" data-tooltip="Ansicht zur&uuml;cksetzen"><i data-lucide="rotate-ccw"></i></button>
+              </div>
+            </div>
+            <div class="zoom-controls" data-scene-obstacle>
+              <button class="icon-button" id="zoom-in" aria-label="Vergr&ouml;&szlig;ern" data-tooltip="Vergr&ouml;&szlig;ern"><i data-lucide="plus"></i></button>
+              <button class="icon-button" id="zoom-out" aria-label="Verkleinern" data-tooltip="Verkleinern"><i data-lucide="minus"></i></button>
+              <span class="control-separator"></span>
+              <button class="icon-button" id="toggle-motion" aria-label="Bewegung pausieren" aria-pressed="false" data-tooltip="Bewegung pausieren"><i data-lucide="pause"></i></button>
+            </div>
+            <div class="scene-metric" data-scene-obstacle>
+              <div class="metric-overline">IM FOKUS</div>
+              <div class="metric-main"><strong id="metric-value"></strong><span id="metric-unit"></span></div>
+              <p id="metric-label"></p>
+            </div>
+            <div class="scene-legend" id="scene-legend" data-scene-obstacle></div>
+            <div class="scene-fallback" id="scene-fallback" hidden role="status">
+              <i data-lucide="monitor-off"></i>
+              <h3>Die 3D-Ansicht ist nicht verf&uuml;gbar.</h3>
+              <p>WebGL konnte nicht gestartet werden. Geschichte, Lesefassung und Quellen bleiben zug&auml;nglich.</p>
+            </div>
+            <div class="scene-bottomline" data-scene-obstacle><span id="model-caption"></span><span class="dimension-label">3D / SCHEMA</span></div>
+          </section>
+        </div>
+
+        <section class="campaign-comparison" id="campaign-comparison" aria-label="Zeitlicher Vergleich der Schlachten 1916" hidden>
+          <div class="comparison-title"><span class="eyebrow">1916 IM VERGLEICH</span><strong>Zwei Schlachten.<br />Eine gemeinsame Zeit.</strong></div>
+          <div class="calendar-chart">
+            <div class="calendar-months" aria-hidden="true"><span>JAN</span><span>FEB</span><span>M&Auml;R</span><span>APR</span><span>MAI</span><span>JUN</span><span>JUL</span><span>AUG</span><span>SEP</span><span>OKT</span><span>NOV</span><span>DEZ</span></div>
+            <div class="campaign-track"><div class="campaign-bar verdun-bar">Verdun <span>21.02. bis 18.12.</span></div></div>
+            <div class="campaign-track"><div class="campaign-bar somme-bar">Somme <span>01.07. bis 18.11.</span></div></div>
+          </div>
+        </section>
+
+        <nav class="chapter-timeline" aria-label="Kapitel der Geschichte">
+          <div class="timeline-label"><span>DER VERLAUF</span><i data-lucide="move-right"></i></div>
+          <div id="chapter-tabs" role="tablist" aria-label="Kapitel"></div>
+        </nav>
+        <footer class="site-footer">
+          <button class="verification-link" id="verification"><i data-lucide="badge-check"></i><span>Quellen gepr&uuml;ft <span id="checked-date"></span></span></button>
+          <p>Geschichte verstehen. Menschen nicht vergessen.</p>
+          <button class="text-button quiz-button" id="open-quiz">Wissen pr&uuml;fen<i data-lucide="arrow-up-right"></i></button>
+        </footer>
+      </main>
+    </div>
+
+    <dialog id="detail-dialog" aria-labelledby="dialog-heading">
+      <header class="dialog-header"><div><p class="eyebrow" id="dialog-eyebrow"></p><h2 id="dialog-heading"></h2></div><button class="icon-button" id="close-dialog" aria-label="Schlie&szlig;en" data-tooltip="Schlie&szlig;en"><i data-lucide="x"></i></button></header>
+      <div id="dialog-content"></div>
+    </dialog>
+    <div id="reading-print"></div>
+    <div class="sr-only" id="chapter-announcement" aria-live="polite" aria-atomic="true"></div>
+    <noscript>F&uuml;r die interaktive Geschichte muss JavaScript aktiviert sein. Die Quellen und die vollst&auml;ndige Geschichte stehen auch im Projekt bereit.</noscript>
+    <script type="module" src="/src/main.mjs"></script>
+  </body>
+</html>

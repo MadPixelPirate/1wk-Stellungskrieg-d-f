@@ -1,0 +1,22 @@
+{
+  "name": "westfront-1914-1918",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host localhost --port 8000 --strictPort",
+    "build": "vite build",
+    "test": "node --test tests/content.test.mjs",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "lucide": "^1.41.0",
+    "polygon-clipping": "^0.15.7",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "vite": "^8.2.2",
+    "vite-plugin-singlefile": "^2.3.3"
+  }
+}
